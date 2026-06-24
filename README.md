@@ -39,19 +39,31 @@ HDMI 输入 (RGB888)
 ## 目录结构
 
 ```
-source/
-  rtl/            # 顶层模块、DDR 帧写入/读取控制器、帧缓冲
-  eth/            # UDP/IP/MAC/ARP 完整协议栈、RGMII 接口
-  hdmi/           # MS7200/MS7210 HDMI 收发芯片 I2C 配置
-  img_process/    # Gamma 查找表
-  tools/          # PC 端 UDP 接收脚本 (Python)
-  *.v             # ISP 模块 (高斯、CSC、EE、OCC、下采样、LCD 驱动)
-ipcore/           # IP 核 (DDR3 控制器、PLL、FIFO)
-sim_prj/          # 仿真工程
-matlab/           # MATLAB 辅助脚本
-*.pds             # Pango Design Suite 工程文件
-*.fdc             # 引脚与约束文件
+source/                  # FPGA 端 RTL 源码
+  rtl/                   # 顶层模块、DDR 帧写入/读取控制器、帧缓冲
+  eth/                   # UDP/IP/MAC/ARP 完整协议栈、RGMII 接口
+  hdmi/                  # MS7200/MS7210 HDMI 收发芯片 I2C 配置
+  img_process/           # Gamma 查找表
+  tools/                 # PC 端 UDP 接收脚本 (Python)
+  *.v                    # ISP 模块 (高斯、CSC、EE、OCC、下采样、LCD 驱动)
+ipcore/                  # IP 核 (DDR3 控制器、PLL、FIFO)
+sim_prj/                 # 仿真工程
+matlab/                  # MATLAB 辅助脚本
+rk_receiver/             # RK 端车牌识别接收程序 (C++17 / RKNN)
+*.pds                    # Pango Design Suite 工程文件
+*.fdc                    # 引脚与约束文件
 ```
+
+## RK 端接收器
+
+`rk_receiver/` 目录包含运行在 Rockchip NPU 平台上的车牌识别接收端程序：
+
+- 接收 FPGA UDP 图像帧，重组并补线
+- FastestDet 车牌检测 + CRNN 车牌识别
+- X11 实时显示检测框和识别结果
+- 多线程流水线：读帧 / 检测 / 识别 / 显示
+
+详见 [rk_receiver/README.md](rk_receiver/README.md)
 
 ## ISP 处理链
 
