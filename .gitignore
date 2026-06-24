@@ -1,0 +1,51 @@
+# Pango Design Suite build artifacts
+compile/
+device_map/
+generate_bitstream/
+generate_netlist/
+place_route/
+synthesize/
+report_power/
+report_timing/
+constraint_check/
+log/
+logbackup/
+*.db
+*.sbit
+*.smsk
+*.bgr
+*.gnr
+*.dmr
+*.cmr
+*.pvf
+*.adf
+*.prt
+*.ccr
+*.pcf
+*.wf
+
+# Simulation build artifacts
+sim_prj/*/sim/behav/work/
+sim_prj/*/sim/behav/*.wlf
+sim_prj/*/sim/behav/*.mpf
+sim_prj/*/sim/behav/transcript
+
+# IP core simulation libraries
+ipcore/ddr3_test/sim_lib/
+
+# Backup files
+*.bak
+*.bak_codex
+*_bak_codex
+
+# Build logs
+flow.log
+*/generate.log
+stderr.log
+stdout.log
+transcript
+*/transcript
+
+# OS files
+Thumbs.db
+.DS_Store
